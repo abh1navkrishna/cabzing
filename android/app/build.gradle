@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin" // Ensure this remains after the Android and Kotlin plugins.
+}
+
+android {
+    namespace = "com.example.cabzing"
+    compileSdk = 34 // Use the latest stable compile SDK version.
+
+    ndkVersion = "23.1.7779620" // You can set the specific version of NDK as needed.
+
+    defaultConfig {
+        applicationId = "com.example.cabzing"
+        minSdk = 21 // Set to at least 21 for compatibility with modern plugins.
+        targetSdk = 33 // Use the latest stable target SDK version.
+        versionCode = 1 // Update this for app updates.
+        versionName = "1.0.0" // Update version as per release plans.
+    }
+
+    buildTypes {
+        release {
+            // Enable code shrinking and obfuscation for release builds.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            signingConfig = signingConfigs.debug // Replace with your release signing config when ready.
+        }
+
+        debug {
+            // Additional configurations for debug builds (if needed).
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+flutter {
+    source = "../.." // Points to the Flutter project source.
+}
